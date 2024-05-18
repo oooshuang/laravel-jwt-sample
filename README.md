@@ -1,5 +1,5 @@
-#  Laravel JWT Sample
-A simple example of Laravel JWT login and registration usage.
+#  Laravel API Sample
+A simple example of using a Laravel API.
 
 ## Installation JWT
 1.  Crate project
