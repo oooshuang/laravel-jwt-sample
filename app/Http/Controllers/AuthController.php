@@ -8,8 +8,87 @@ use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
+
+
+/**
+ * @OA\Info(
+ *     title="API",
+ *     version="1.0.1",
+ *     description="Laravel Sample API Documentation",
+ *     @OA\Contact(
+ *         email="hrbhhot@gamil.com"
+ *     ),
+ *     @OA\License(
+ *         name="Private License",
+ *         url="https://github.com/oooshuang/laravel-jwt-sample"
+ *     )
+ * )
+ */
 class AuthController extends Controller
 {
+    // 生成 swagger文档
+    /**
+     * @OA\Post(
+     *     path="/register",
+     *     tags={"Authentication"},
+     *     summary="Register a new user",
+     *     operationId="register",
+     *     @OA\RequestBody(
+     *         description="User data",
+     *         required=true,
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="name",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="email",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="password",
+     *                     type="string"
+     *                 ),
+     *                 example={"name": "John Doe", "email": "john@example.com", "password": "password123"}
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="User registered successfully",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="name",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="email",
+     *                     type="string"
+     *                 ),
+     *                 example={"name": "John Doe", "email": "john@example.com"}
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Validation error",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="message",
+     *                     type="string"
+     *                 ),
+     *                 example={"message": "The given data was invalid."}
+     *             )
+     *         )
+     *     )
+     * )
+     */
     public function register() {
         $validator = Validator::make(request()->all(), [
             'name' => 'required',

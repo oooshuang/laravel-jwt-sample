@@ -1,8 +1,7 @@
 #  Laravel JWT Sample
 A simple example of Laravel JWT login and registration usage.
 
-## Installation
-## install
+## Installation JWT
 1.  Crate project
     - composer create-project laravel/laravel ship-api
     - cd ship-api
@@ -39,3 +38,14 @@ A simple example of Laravel JWT login and registration usage.
 9. Register route
     - routes/api.php  [Add a series of user registration, login and other routes](routes/api.php)
     - Add registration and other routes
+
+## Installation Swagger
+1. Install l5-swagger
+    - composer require darkaonline/l5-swagger
+    - php artisan vendor:publish --provider "L5Swagger\L5SwaggerServiceProvider"
+2. Configuration
+   - config/l5-swagger.php [Add a series of user registration, login and other methods](config/l5-swagger.php)
+3. Generate Swagger
+    - php artisan l5-swagger:generate
+
+ 
