@@ -15,7 +15,7 @@ A simple example of Laravel JWT login and registration usage.
 5. Generate JWT secret
     - php artisan jwt:secret
     - jwt-auth secret 
-6. Modify config/auth.php  
+6. Modify config/auth.php  [Add a series of user registration, login and other methods](config/auth.php)
     ```php 
     'defaults' => [
     'guard' => 'api',
