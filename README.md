@@ -32,10 +32,10 @@ A simple example of Laravel JWT login and registration usage.
 7. Add user model methods
     - getJWTIdentifier() Get key id
     - getJWTCustomClaims()
-    - app/Models/User.php [Add a series of user registration, login and other methods]()
+    - app/Models/User.php [Add a series of user registration, login and other methods](app/Models/User.php)
 8. Create AuthController
     - php artisan make:controller AuthController
-    - app/Http/Controllers/AuthController.php [Add a series of user registration, login and other methods]()
+    - app/Http/Controllers/AuthController.php [Add a series of user registration, login and other methods](app/Http/Controllers/AuthController.php)
 9. Register route
-    - routes/api.php  [Add a series of user registration, login and other routes]()
+    - routes/api.php  [Add a series of user registration, login and other routes](routes/api.php)
     - Add registration and other routes
