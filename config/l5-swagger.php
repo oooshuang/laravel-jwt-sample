@@ -198,6 +198,15 @@ return [
                     'in' => 'header', // The location of the API key. Valid values are "query" or "header".
                 ],
                 */
+
+                'bearerAuth' => [
+                    'type' => 'http',
+                    'description' => 'Enter JWT Token',
+                    'scheme' => 'bearer',
+                    'name' => 'Authorization',
+                ],
+
+
             ],
             'security' => [
                 /*
