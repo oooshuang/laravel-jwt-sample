@@ -48,4 +48,15 @@ A simple example of using a Laravel API.
 3. Generate Swagger
     - php artisan l5-swagger:generate
 
+## Migration
+- php artisan make:migration add_column_users
+- php artisan migrate
+- php artisan migrate:rollback
+
+## CMD
+- php artisan route:list
+- php artisan l5-swagger:generate
+- php artisan migrate
+- php artisan jwt:secret
+- php artisan install:api
  

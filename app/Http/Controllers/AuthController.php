@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Auth;
  *     )
  * )
  */
-class AuthController extends Controller
+class AuthController extends BaseController
 {
     // 生成 swagger文档
     /**
@@ -97,7 +97,7 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors()->toJson(), 400);
+           return $this->output($validator->errors(), 'The given data was invalid.', 400);
         }
 
         $user = new User;
@@ -105,8 +105,14 @@ class AuthController extends Controller
         $user->email = request()->email;
         $user->password = bcrypt(request()->password);
         $user->save();
+        if($user->id){
+            $user->status = 1;
+            $user->save();
+            return $this->output([], 'User registered successfully', 201);
+        }
+        return $this->output([], 'User registered failed', 400);
 
-        return response()->json($user, 201);
+
     }
 
     /**
@@ -178,6 +184,9 @@ class AuthController extends Controller
         if (!$token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
+        if(auth()->user()->status != 1){
+            return $this->output([], 'User is not active', 401);
+        }
 
         return $this->respondWithToken($token);
     }
@@ -229,7 +238,18 @@ class AuthController extends Controller
      */
     public function me()
     {
-        return response()->json(auth()->user());
+
+        $user = auth()->user();
+
+        if(!$user){
+            return $this->output([], 'Unauthenticated.', 401);
+        }
+        if($user->status != 1){
+            return $this->output([], 'User is not active', 401);
+        }
+        $list= $user->getList();
+        return $this->output($list, 'User information', 200 );
+        return $this->output($user, 'User information', 200 );
     }
 
     /**
@@ -273,7 +293,7 @@ class AuthController extends Controller
     {
         auth()->logout();
 
-        return response()->json(['message' => 'Successfully logged out']);
+        return $this->output([], 'Successfully logged out', 200);
     }
 
     /**
@@ -330,11 +350,12 @@ class AuthController extends Controller
 
     private function respondWithToken($token)
     {
-        return response()->json([
+        return $this->output([
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60 * 24 * 365
-        ]);
+        ], 'User logged in successfully', 200);
+
     }
 
 
