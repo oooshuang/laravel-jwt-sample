@@ -247,10 +247,16 @@ class AuthController extends BaseController
         if($user->status != 1){
             return $this->output([], 'User is not active', 401);
         }
-        $list= $user->getList();
+   /*
+    * ex: get list
+    *   $list= $user->getList();
         return $this->output($list, 'User information', 200 );
+    *
+    * */
         return $this->output($user, 'User information', 200 );
     }
+
+
 
     /**
      * @OA\Post(
